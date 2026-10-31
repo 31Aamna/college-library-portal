@@ -1,0 +1,13 @@
+{
+  "routes": [
+    { "path": "/", "title": "Dashboard" },
+    { "path": "/books", "title": "Books" },
+    { "path": "/books/new", "title": "Add Book" },
+    { "path": "/books/:id/edit", "title": "Edit Book" },
+    { "path": "/members", "title": "Members" },
+    { "path": "/members/new", "title": "Register Member" },
+    { "path": "/members/:id/edit", "title": "Edit Member" },
+    { "path": "/issue-return", "title": "Issue & Return" },
+    { "path": "/transactions", "title": "Transaction History" }
+  ]
+}

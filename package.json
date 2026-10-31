@@ -1,0 +1,12 @@
+{
+  "name": "college-library-portal",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "pnpm --dir library-frontend dev",
+    "backend": "mvn -f libraryapp/pom.xml spring-boot:run",
+    "build": "pnpm --dir library-frontend build",
+    "preview": "pnpm --dir library-frontend preview"
+  }
+}

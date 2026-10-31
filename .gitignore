@@ -1,0 +1,8 @@
+node_modules/
+library-frontend/node_modules/
+library-frontend/dist/
+libraryapp/target/
+.env
+.env.*
+!.env.example
+.DS_Store
