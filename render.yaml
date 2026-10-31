@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: college-library-api
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: LIBRARY_FINE_RATE
+        value: "1.50"
+
+  - type: web
+    name: college-library-frontend
+    runtime: static
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm --dir library-frontend build
+    staticPublishPath: ./library-frontend/dist
+    envVars:
+      - key: VITE_API_HOST
+        fromService:
+          type: web
+          name: college-library-api
+          property: host
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

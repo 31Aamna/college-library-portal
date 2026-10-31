@@ -66,6 +66,17 @@ The Vite development server listens on port 3000 and proxies `/api` to Spring Bo
 
 Confirm the API is available at `http://localhost:8080/api/health` before using the frontend.
 
+## Deploy to Render
+
+The repository includes a Render Blueprint for a static frontend and Spring Boot API. The frontend build receives the API hostname automatically, and the API allows the frontend's Render origin.
+
+1. Create a MySQL-compatible TiDB Cloud Starter instance and enable its TLS-protected public endpoint. Copy its JDBC connection URL, username, and password from the provider dashboard; do not commit these values.
+2. In Render, choose **New → Blueprint**, connect `31Aamna/college-library-portal`, and deploy the `main` branch. Render will prompt for `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, and `SPRING_DATASOURCE_PASSWORD`. Enter the TiDB values there as secret environment variables.
+3. If TiDB requires an IP allowlist, allow the Render API service's outbound addresses. Keep TLS enabled.
+4. Wait for both services to finish deploying. Open the `college-library-frontend` URL; the API health check is available at the `college-library-api` URL plus `/api/health`.
+
+The included Render services use the free plan, which is suitable for a demo but may spin down when idle and take about a minute to wake. Check current Render and database-provider limits before use. This app has no authentication; anyone who can reach the public site can modify its demo books, members, and transactions. Do not enter real patron information.
+
 ## Build and test commands
 
 ```bash
